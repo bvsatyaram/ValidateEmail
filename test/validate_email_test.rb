@@ -5,24 +5,41 @@ require 'ValidateEmail'
 
 class ValidateEmailTest < Test::Unit::TestCase
   def test_validat_email
-    assert !ValidateEmail.validate("bvsatyaram")
-    assert !ValidateEmail.validate("bvsatyaram@example")
-    assert !ValidateEmail.validate("bvsatyaram.com")
-    assert ValidateEmail.validate("bvsatyaram@example.com")
-    assert ValidateEmail.validate("bv_satyaram@example.com")
-    assert ValidateEmail.validate("bv.satyaram@example.com")
-    assert ValidateEmail.validate("bv-satyaram@example.com")
-    assert ValidateEmail.validate("bvsatyaram@example.org")
-    assert ValidateEmail.validate("bvsatyaram@fhgtrityhgs.com")
+    assert_not_valid("bvsatyaram")
+    assert_not_valid("bvsatyaram@example")
+    assert_not_valid("bvsatyaram.com")
+    assert_valid("bvsatyaram@example.com")
+    assert_valid("bv_satyaram@example.com")
+    assert_valid("bv.satyaram@example.com")
+    assert_valid("bv-satyaram@example.com")
+    assert_valid("bvsatyaram@example.org")
+    assert_valid("bvsatyaram@fhgtrityhgs.com")
 
-    assert !ValidateEmail.validate("bvsatyaram", true)
-    assert !ValidateEmail.validate("bvsatyaram@example", true)
-    assert !ValidateEmail.validate("bvsatyaram.com", true)
-    assert ValidateEmail.validate("bvsatyaram@bvsatyaram.com", true)
-    assert ValidateEmail.validate("bv_satyaram@bvsatyaram.com", true)
-    assert ValidateEmail.validate("bv.satyaram@bvsatyaram.com", true)
-    assert ValidateEmail.validate("bv-satyaram@bvsatyaram.com", true)
-    assert ValidateEmail.validate("bvsatyaram@rubygems.org", true)
-    assert !ValidateEmail.validate("bvsatyaram@fhgtrityhgs.com", true)
+    assert_not_valid("bvsatyaram", true)
+    assert_not_valid("bvsatyaram@example", true)
+    assert_not_valid("bvsatyaram.com", true)
+    assert_valid("bvsatyaram@bvsatyaram.com", true)
+    assert_valid("bv_satyaram@bvsatyaram.com", true)
+    assert_valid("bv.satyaram@bvsatyaram.com", true)
+    assert_valid("bv-satyaram@bvsatyaram.com", true)
+    assert_valid("bvsatyaram@rubygems.org", true)
+    assert_not_valid("bvsatyaram@fhgtrityhgs.com", true)
+  end
+
+  private
+  def assert_valid(email, validate_mx = nil)
+    if validate_mx.nil?
+      assert_equal true, ValidateEmail.validate(email)
+    else
+      assert_equal true, ValidateEmail.validate(email, validate_mx)
+    end
+  end
+
+  def assert_not_valid(email, validate_mx = nil)
+    if validate_mx.nil?
+      assert_equal false, ValidateEmail.validate(email)
+    else
+      assert_equal false, ValidateEmail.validate(email, validate_mx)
+    end
   end
 end
