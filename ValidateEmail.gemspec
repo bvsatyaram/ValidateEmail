@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "ValidateEmail"
   s.version     = Validateemail::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Satyaram B V"]
+  s.email       = ["bvsatyaram@gmail.com"]
+  s.homepage    = "http://bvsatyaram.com"
+  s.summary     = %q{Validates email address optionally also validating the mx records}
+  s.description = %q{Validates email address optionally also validating the mx records}
 
   s.rubyforge_project = "ValidateEmail"
 
