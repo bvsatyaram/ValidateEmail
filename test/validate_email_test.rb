@@ -23,6 +23,9 @@ class ValidateEmailTest < Test::Unit::TestCase
     assert_valid("bv.satyaram@bvsatyaram.com", true)
     assert_valid("bv-satyaram@bvsatyaram.com", true)
     assert_valid("bvsatyaram@rubygems.org", true)
+    assert_valid("bv12.satyaram@rubygems.org", true)
+    assert_valid("bvsatyaram+google@bvsatyaram.com", true)
+    assert_valid("bv.satya_ram-123+google123@bvsatyaram.com", true)
     assert_not_valid("bvsatyaram@fhgtrityhgs.com", true)
   end
 
