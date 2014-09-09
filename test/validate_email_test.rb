@@ -15,6 +15,14 @@ class ValidateEmailTest < Test::Unit::TestCase
     assert_valid("bvsatyaram@example.org")
     assert_valid("bvsatyaram@fhgtrityhgs.com")
 
+    assert_valid("bvsatyaram+nospam@example.com")
+    assert_valid("1bvsatyaram@example.com")
+    assert_valid("_bvsatyaram@example.com")
+    assert_valid("bvsatyaram@ex-ample.com")
+    assert_valid("bvsatyaram@my-host.ex-ample.com")
+    assert_not_valid("bvsatyaram@example..com")
+    assert_not_valid("bvsatyaram@ex_ample.com")
+
     assert_not_valid("bvsatyaram", true)
     assert_not_valid("bvsatyaram@example", true)
     assert_not_valid("bvsatyaram.com", true)
